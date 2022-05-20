@@ -1,0 +1,88 @@
+@{
+    ViewData["Title"] = "Store";
+}
+@model src.Data.PagedList<src.Models.Product>
+
+<style>
+    .search {
+        height: 40px;
+        width: 80%;
+        border-radius: 60px;
+        outline: none;
+        border: 2px solid lightblue;
+    }
+
+    .btn0 {
+        height: 39px;
+        width: 40%;
+        outline: none;
+        border: 2px solid lightblue;
+        background: lightblue;
+        border-radius: 60px;
+        margin-left: -35%;
+        font-weight: 700;
+    }
+
+    .line {
+        border: 2px solid lightblue;
+    }
+
+    .card:hover {
+        box-shadow: 4px 5px 15px 1px rgba(0,0,0,0.84);
+        -webkit-box-shadow: 4px 5px 15px 1px rgba(0,0,0,0.84);
+        -moz-box-shadow: 4px 5px 15px 1px rgba(0,0,0,0.84);
+    }
+
+    a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+    }
+</style>
+<script src="https://kit.fontawesome.com/f1f4a03335.js" crossorigin="anonymous"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Products</h1>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form asp-action="Index" method="get">
+                <input class="px-2 search" type="search" placeholder="Search" name="searchString" value="@ViewData["CurrentFilter"]">
+                <button class="btn0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <hr class="line">
+    </div>
+    <div class="row">
+        @foreach (var item in Model) {
+            <div class="col-lg-3 text-center my-2">
+                <a asp-controller="Store" asp-action="Details" asp-route-id="@item.ProductID">
+                    <div class="card border-0 bg-light">
+                        <div class="card-body">
+                            <img src="images/@item.imageFileName" class="img-fluid" alt="">
+                        </div>
+                        <h6>@item.name</h6>
+                        <p>$@item.price</p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+
+    @{
+        var prevDisabled = !Model.hasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.hasNextPage ? "disabled" : "";
+    }
+    <div class="row">
+        <div class="col-md-1">
+            <a asp-action="Index" style="width: 100%;" asp-route-pageNumber="@(Model.pageIndex - 1)" class="btn btn-success @prevDisabled"><i class="fas fa-arrow-left"></i></a>
+        </div>
+        <div class="col-md-10"></div>
+        <div class="col-md-1">
+            <a asp-action="Index" style="width: 100%;" asp-route-pageNumber="@(Model.pageIndex + 1)" class="btn btn-success @nextDisabled"><i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</div>

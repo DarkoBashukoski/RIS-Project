@@ -1,0 +1,157 @@
+@model src.Models.Product
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.138.0/build/three.module.js",
+            "GLTFLoader": "https://unpkg.com/three@0.138.0/examples/jsm/loaders/GLTFLoader.js",
+            "OrbitControls": "https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js"
+        }
+    }
+</script>
+
+<style>
+    .line {
+        border: 2px solid lightblue;
+    }
+
+    #canvas {
+        height: 400;
+    }
+
+    .count {
+        margin-right: 0px;
+        padding-right: 0px;
+        height: 40px;
+        width: 20%;
+        border-top-left-radius: 60px;
+        border-bottom-left-radius: 60px;
+        outline: none;
+        border: 2px solid lightblue;
+    }
+
+    .btn0 {
+        margin-left: 0px;
+        padding-left: 0px;
+        height: 40px;
+        width: 20%;
+        outline: none;
+        border: 2px solid lightblue;
+        background: lightblue;
+        border-top-right-radius: 60px;
+        border-bottom-right-radius: 60px;
+        font-weight: 700;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div id="canvas" class="col-md-6">
+            
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <h1>@Model.name</h1>
+            </div>
+            <div class="row">
+                <hr class="line">
+            </div>
+            <div class="row">
+                <h3>$@Model.price</h3>
+            </div>
+            <div class="row">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+            </div>
+            <div class="row">
+                <form asp-action="AddToCart" asp-route-id="@Model.ProductID" method="get">
+                    <input class="count" type="number" min="1" value="1" name="quantity">
+                    @if (SignInManager.IsSignedIn(User)) {
+                        <button class="btn0" type="submit">Add to Cart</button>
+                    } else {
+                        <button class="btn0" type="submit" disabled>Add to Cart</button>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import * as THREE from 'three';
+    import {GLTFLoader} from 'GLTFLoader'
+    import {OrbitControls} from 'OrbitControls';
+
+    let canvas = $('#canvas');
+
+    const scene = new THREE.Scene()
+    scene.add(new THREE.AxesHelper(5))
+
+    const light = new THREE.SpotLight()
+    light.position.set(5, 5, 5)
+    scene.add(light)
+
+    const camera = new THREE.PerspectiveCamera(
+        75,
+        canvas.width() / canvas.height(),
+        0.1,
+        1000
+    )
+    camera.position.z = 2
+    camera.position.x = 2
+    camera.position.y = 1.5
+
+    const renderer = new THREE.WebGLRenderer()
+    // renderer.physicallyCorrectLights = true
+    // renderer.shadowMap.enabled = true
+    // renderer.outputEncoding = THREE.sRGBEncoding
+    renderer.setSize(canvas.width(), canvas.height())
+    console.log(canvas.width(), canvas.height())
+    canvas.append(renderer.domElement)
+
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.enableDamping = true
+
+    const loader = new GLTFLoader()
+    loader.load(
+        "../../models/@Model.modelFileName",
+        function (gltf) {
+            // gltf.scene.traverse(function (child) {
+            //     if ((child as THREE.Mesh).isMesh) {
+            //         const m = (child as THREE.Mesh)
+            //         m.receiveShadow = true
+            //         m.castShadow = true
+            //     }
+            //     if (((child as THREE.Light)).isLight) {
+            //         const l = (child as THREE.Light)
+            //         l.castShadow = true
+            //         l.shadow.bias = -.003
+            //         l.shadow.mapSize.width = 2048
+            //         l.shadow.mapSize.height = 2048
+            //     }
+            // })
+            scene.add(gltf.scene)
+        },
+        (xhr) => {
+            console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+        },
+        (error) => {
+            console.log(error)
+        }
+    )
+
+    function animate() {
+        requestAnimationFrame(animate)
+        controls.update()
+        render()
+    }
+
+    function render() {
+        renderer.render(scene, camera)
+    }
+
+    animate()
+
+</script>
