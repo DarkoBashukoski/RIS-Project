@@ -38,9 +38,14 @@
     }
 
     .card:hover {
-        box-shadow: 4px 5px 15px 1px rgba(0,0,0,0.84);
-        -webkit-box-shadow: 4px 5px 15px 1px rgba(0,0,0,0.84);
-        -moz-box-shadow: 4px 5px 15px 1px rgba(0,0,0,0.84);
+        box-shadow: 4px 5px 15px 1px rgba(0, 0, 0, 0.84);
+        -webkit-box-shadow: 4px 5px 15px 1px rgba(0, 0, 0, 0.84);
+        -moz-box-shadow: 4px 5px 15px 1px rgba(0, 0, 0, 0.84);
+    }
+
+    a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
     }
 </style>
 
@@ -67,13 +72,15 @@
         <div class="row">
             @foreach (var item in Model) {
                 <div class="col-lg-3 text-center my-2">
-                    <div class="card border-0 bg-light">
-                        <div class="card-body">
-                            <img src="images/@item.imageFileName" class="img-fluid" alt="">
+                    <a asp-controller="Store" asp-action="Details" asp-route-id="@item.ProductID">
+                        <div class="card border-0 bg-light">
+                            <div class="card-body">
+                                <img src="images/@item.imageFileName" class="img-fluid" alt="">
+                            </div>
+                            <h6>@item.name</h6>
+                            <p>$@item.price</p>
                         </div>
-                        <h6>@item.name</h6>
-                        <p>$@item.price</p>
-                    </div>
+                    </a>
                 </div>
             }
         </div>

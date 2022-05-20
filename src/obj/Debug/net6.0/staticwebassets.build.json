@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HiHcoQVSxoPSmdpYPMwa3VSi+bz3vSuPLzvA3U2iDHA=",
+  "Hash": "e03nIaUU0u5V+eHkfxTvYjuN0lI67UHEl8U/fCDoLOY=",
   "Source": "src",
   "BasePath": "_content/src",
   "Mode": "Default",
@@ -1173,6 +1173,40 @@
       "OriginalItemSpec": "wwwroot\\images\\4.png"
     },
     {
+      "Identity": "C:\\Users\\danie\\Desktop\\RIS Project\\src\\wwwroot\\images\\5.png",
+      "SourceId": "src",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danie\\Desktop\\RIS Project\\src\\wwwroot\\",
+      "BasePath": "_content/src",
+      "RelativePath": "images/5.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\5.png"
+    },
+    {
+      "Identity": "C:\\Users\\danie\\Desktop\\RIS Project\\src\\wwwroot\\images\\6.png",
+      "SourceId": "src",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danie\\Desktop\\RIS Project\\src\\wwwroot\\",
+      "BasePath": "_content/src",
+      "RelativePath": "images/6.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\6.png"
+    },
+    {
       "Identity": "C:\\Users\\danie\\Desktop\\RIS Project\\src\\wwwroot\\images\\back.png",
       "SourceId": "src",
       "SourceType": "Discovered",
@@ -2259,6 +2293,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\models\\4.gltf"
+    },
+    {
+      "Identity": "C:\\Users\\danie\\Desktop\\RIS Project\\src\\wwwroot\\models\\5.gltf",
+      "SourceId": "src",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danie\\Desktop\\RIS Project\\src\\wwwroot\\",
+      "BasePath": "_content/src",
+      "RelativePath": "models/5.gltf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\models\\5.gltf"
+    },
+    {
+      "Identity": "C:\\Users\\danie\\Desktop\\RIS Project\\src\\wwwroot\\models\\6.gltf",
+      "SourceId": "src",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danie\\Desktop\\RIS Project\\src\\wwwroot\\",
+      "BasePath": "_content/src",
+      "RelativePath": "models/6.gltf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\models\\6.gltf"
     }
   ]
 }

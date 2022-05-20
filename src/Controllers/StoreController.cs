@@ -82,6 +82,16 @@ public class StoreController : Controller
         return View();
     }
 
+    public IActionResult ClearCart(string id) {
+        var cart = _context.Cart.Where(c => c.ApplicationUserID == _userManager.GetUserId(User));
+        foreach (var c in cart) {
+            _context.Remove(c);
+        }
+        _context.SaveChanges();
+
+        return RedirectToAction(nameof(Index));
+    }
+
     public IActionResult GenerateData() {
         Product p = new Product{
                 price = 19.99f,
@@ -107,10 +117,24 @@ public class StoreController : Controller
                 imageFileName = "4.png",
                 modelFileName = "4.gltf"
         };
+        Product p5 = new Product{
+                price = 5.99f,
+                name = "Decor 1",
+                imageFileName = "5.png",
+                modelFileName = "5.gltf"
+        };
+        Product p6 = new Product{
+                price = 8.99f,
+                name = "Decor 2",
+                imageFileName = "6.png",
+                modelFileName = "6.gltf"
+        };
         _context.Add(p);
         _context.Add(p2);
         _context.Add(p3);
         _context.Add(p4);
+        _context.Add(p5);
+        _context.Add(p6);
         _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
