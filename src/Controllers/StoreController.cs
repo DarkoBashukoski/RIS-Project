@@ -89,7 +89,7 @@ public class StoreController : Controller
         }
         _context.SaveChanges();
 
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction(nameof(Cart));
     }
 
     public IActionResult GenerateData() {
